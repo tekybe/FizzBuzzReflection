@@ -4,14 +4,8 @@ namespace FizzBuzzReflection.Rules;
 
 public class FizzBuzzRule : IFizzBuzzRule
 {
-    public string GetResult()
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool IsMatch(int number)
-    {
-        throw new NotImplementedException();
-    }
+    public bool IsMatch(int number) => number % 15 == 0;
+    public string GetResult() => "FizzBuzz";
 }
+
 

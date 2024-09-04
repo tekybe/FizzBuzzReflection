@@ -1,17 +1,10 @@
 using FizzBuzzReflection.Contracts;
 
-namespace FizzBuzzReflection.Rules
-{
-    public class FizzRule : IFizzBuzzRule
-    {
-        public string GetResult()
-        {
-            throw new NotImplementedException();
-        }
+namespace FizzBuzzReflection.Rules;
 
-        public bool IsMatch(int number)
-        {
-            throw new NotImplementedException();
-        }
-    }
+public class FizzRule : IFizzBuzzRule
+{
+    public bool IsMatch(int number) => number % 3 == 0;
+    public string GetResult() => "Fizz";
 }
+

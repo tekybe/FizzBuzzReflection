@@ -1,4 +1,4 @@
-using FizzBuzzReflection.Rules;
+using FizzBuzzReflection.Services;
 using FluentAssertions;
 
 namespace FizzBuzzTests
