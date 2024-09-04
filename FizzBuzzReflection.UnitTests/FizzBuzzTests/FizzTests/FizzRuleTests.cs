@@ -5,22 +5,24 @@ namespace FizzBuzzTests
 {
     public class FizzRuleTests
     {
-        [Fact]
-        public void Should_Return_Fizz_For_Multiples_Of_Three()
+        [Theory]
+        [InlineData(3)]
+        [InlineData(6)]
+        [InlineData(9)]
+        public void Should_Return_Fizz_For_Multiples_Of_Three(int number)
         {
             var rule = new FizzRule();
-            rule.IsMatch(3).Should().BeTrue();
-            rule.IsMatch(6).Should().BeTrue();
-            rule.IsMatch(9).Should().BeTrue();
+            rule.IsMatch(number).Should().BeTrue();
         }
 
-        [Fact]
-        public void Should_Not_Return_Fizz_For_Non_Multiples_Of_Three()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(4)]
+        public void Should_Not_Return_Fizz_For_Non_Multiples_Of_Three(int number)
         {
             var rule = new FizzRule();
-            rule.IsMatch(1).Should().BeFalse();
-            rule.IsMatch(2).Should().BeFalse();
-            rule.IsMatch(4).Should().BeFalse();
+            rule.IsMatch(number).Should().BeFalse();
         }
     }
 }

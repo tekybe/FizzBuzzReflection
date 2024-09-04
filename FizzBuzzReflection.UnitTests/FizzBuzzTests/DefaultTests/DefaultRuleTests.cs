@@ -5,13 +5,14 @@ namespace FizzBuzzTests
 {
     public class DefaultRuleTests
     {
-        [Fact]
-        public void Should_Return_Number_If_No_Rule_Matches()
+        [Theory]
+        [InlineData(1, "1")]
+        [InlineData(2, "2")]
+        [InlineData(4, "4")]
+        public void Should_Return_Number_If_No_Rule_Matches(int number, string expected)
         {
             var fizzBuzz = new FizzBuzz();
-            fizzBuzz.Generate(1, 1)[0].Should().Be("1");
-            fizzBuzz.Generate(2, 2)[0].Should().Be("2");
-            fizzBuzz.Generate(4, 4)[0].Should().Be("4");
+            fizzBuzz.Generate(number, number)[0].Should().Be(expected);
         }
     }
 }
