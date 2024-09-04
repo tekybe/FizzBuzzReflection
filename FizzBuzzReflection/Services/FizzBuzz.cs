@@ -1,5 +1,4 @@
 using FizzBuzzReflection.Contracts;
-using System.Reflection;
 
 namespace FizzBuzzReflection.Services
 {
@@ -9,7 +8,7 @@ namespace FizzBuzzReflection.Services
 
         public FizzBuzz()
         {
-            _rules = LoadRules();
+            _rules = RuleLoader.LoadRules();
         }
 
         public List<string> Generate(int start, int end)
@@ -26,18 +25,6 @@ namespace FizzBuzzReflection.Services
         {
             var rule = _rules.FirstOrDefault(r => r.IsMatch(number));
             return rule != null ? rule.GetResult() : number.ToString();
-        }
-
-        private IEnumerable<IFizzBuzzRule> LoadRules()
-        {
-            var ruleType = typeof(IFizzBuzzRule);
-            var ruleTypes = Assembly.GetExecutingAssembly()
-                                    .GetTypes()
-                                    .Where(t => ruleType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
-
-            return ruleTypes.Select(Activator.CreateInstance)
-                            .Cast<IFizzBuzzRule>()
-                            .ToList();
         }
     }
 }
