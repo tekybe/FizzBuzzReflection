@@ -1,3 +1,6 @@
+using FizzBuzzReflection.Contracts;
+using System.Reflection;
+
 namespace FizzBuzzReflection.Services
 {
     public static class RuleLoader
@@ -5,13 +8,12 @@ namespace FizzBuzzReflection.Services
         public static IEnumerable<IFizzBuzzRule> LoadRules()
         {
             var ruleType = typeof(IFizzBuzzRule);
-            var ruleTypes = Assembly.GetExecutingAssembly()
-                                    .GetTypes()
-                                    .Where(t => ruleType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
-
-            return ruleTypes.Select(Activator.CreateInstance)
-                            .Cast<IFizzBuzzRule>()
-                            .ToList();
+            return Assembly.GetExecutingAssembly()
+                           .GetTypes()
+                           .Where(t => ruleType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
+                           .Select(Activator.CreateInstance)
+                           .Cast<IFizzBuzzRule>()
+                           .ToList();
         }
     }
 }
